@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tarjeta de Cumpleaños</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      margin: 0;
+      background: url('img/fondo.jpg') no-repeat center center fixed;
+      background-size: cover;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: rgba(255,255,255,0.6);
+      backdrop-filter: blur(8px);
+      z-index: -1;
+    }
+
+    .card {
+      width: 90%;
+      max-width: 420px;
+      background: #ffffff;
+      border-radius: 20px;
+      box-shadow:
+        0 0 0 1px rgba(0, 0, 0, 0.15),
+        0 10px 35px rgba(0, 0, 0, 0.25);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .page {
+      padding: 30px 25px 80px;
+      display: none;
+      animation: fadeIn 0.8s ease;
+    }
+
+    .page.active {
+      display: block;
+    }
+
+    h1, h2 {
+      color: #4a6f62;
+      text-align: center;
+      position: relative;
+      padding-bottom: 8px;
+    }
+
+    h1::after, h2::after {
+      content: "";
+      display: block;
+      width: 60px;
+      height: 2px;
+      background: rgba(0,0,0,0.6);
+      margin: 8px auto 0;
+      border-radius: 2px;
+    }
+
+    p {
+      color: #555;
+      line-height: 1.6;
+      text-align: center;
+    }
+
+    .btn {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #7fb8a6;
+      color: #fff;
+      border: none;
+      padding: 12px 28px;
+      border-radius: 30px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background 0.3s ease, transform 0.2s ease;
+    }
+
+    .btn-back {
+      position: absolute;
+      bottom: 26px;
+      left: 20px;
+      background: transparent;
+      color: #4a6f62;
+      border: none;
+      font-size: 14px;
+      cursor: pointer;
+      opacity: 0.7;
+      transition: opacity 0.3s ease, transform 0.2s ease;
+    }
+
+    .btn-back:hover {
+      opacity: 1;
+      transform: translateX(-2px);
+    }
+
+    .btn:hover {
+      background: #6aa796;
+      transform: translateX(-50%) scale(1.05);
+    }
+
+    .photo {
+      width: 100%;
+      border-radius: 15px;
+      margin: 20px 0;
+      animation: zoomIn 1s ease;
+    }
+
+    .info-box {
+      background: #f1f7f5;
+      border-radius: 15px;
+      padding: 15px;
+      margin: 15px 0;
+    }
+
+    .info-box strong {
+      color: #4a6f62;
+    }
+
+    a.link {
+      display: block;
+      margin-top: 8px;
+      color: #5fa392;
+      text-decoration: none;
+      font-weight: 600;
+      text-align: center;
+    }
+
+    a.link:hover {
+      text-decoration: underline;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes zoomIn {
+      from { transform: scale(0.9); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+      .floating-flowers {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    .flower {
+      position: absolute;
+      top: -60px;
+      width: 45px;
+      height: 45px;
+      background-image: url('img/ortencia.png');
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-color: transparent;
+      opacity: 0.90;
+      mix-blend-mode: multiply;
+      filter: drop-shadow(0 4px 6px rgba(0,0,0,0.15));
+      animation: fall linear infinite;
+    }
+
+    @keyframes fall {
+      to {
+        transform: translateY(110vh) rotate(360deg);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="floating-flowers" id="flowers"></div>
+
+  <div class="card">
+
+    <!-- Página 1 -->
+    <div class="page active" id="page1">
+      <h1>Una celebración para recordar</h1>
+      <p>
+        Hay momentos en la vida que merecen ser celebrados con calma,
+        gratitud y rodeados de quienes han sido parte del camino.
+        Hoy nos reunimos para honrar 60 años de historias, aprendizajes,
+        sonrisas compartidas y amor sembrado con el paso del tiempo.
+      </p>
+      <p>
+        Esta no es solo una celebración de cumpleaños,
+        es un encuentro íntimo para disfrutar, conversar,
+        reír y crear nuevos recuerdos junto a las personas más cercanas.
+      </p>
+      <p>
+        Te invitamos a ser parte de este momento especial,
+        preparado con dedicación, elegancia y el cariño de quienes
+        valoran profundamente su presencia.
+      </p>
+      <button class="btn" onclick="nextPage(2)">Continuar</button>
+    </div>
+
+    <!-- Página 2 -->
+    <div class="page" id="page2">
+      <button class="btn-back" onclick="nextPage(1)">← Atrás</button>
+      <h2>Nuestra Cumpleañera</h2>
+      <img src="/img/cumpleanera.jpg" alt="Cumpleañera" class="photo" />
+      <p>
+        Celebramos la vida de una persona especial, rodeada de flores,
+        calidez y momentos que florecen como las hortensias.
+      </p>
+      <button class="btn" onclick="nextPage(3)">Siguiente</button>
+    </div>
+
+    <!-- Página 3 -->
+    <div class="page" id="page3">
+      <button class="btn-back" onclick="nextPage(2)">← Atrás</button>
+      <h2>Detalles del Evento</h2>
+
+      <div class="info-box">
+        <p><strong>Fecha y hora:</strong><br> Sábado 21 de Febrero · 8:00 p.m.</p>
+      </div>
+
+      <div class="info-box">
+        <p><strong>Código de vestimenta:</strong><br> Formal - Color Negro</p>
+      </div>
+
+      <div class="info-box">
+        <p><strong>Lugar:</strong></p>
+        <a class="link" href="https://maps.app.goo.gl/Ao3DCtj6pYD3tqpx5?g_st=awb" target="_blank">Ver ubicación en Google Maps</a>
+      </div>
+
+      <div class="info-box">
+        <p><strong>Confirmar asistencia en el siguiente enlace:</strong></p>
+        <a class="link" href="https://forms.google.com" target="_blank">Formulario de confirmación</a>
+      </div>
+
+      <p>
+        Será un honor contar con tu presencia para compartir este momento especial, celebrar juntos y crear recuerdos que quedarán en el corazón. Te esperamos con cariño para disfrutar de una velada única en compañía de quienes más apreciamos.
+      </p>
+
+    </div>
+
+  </div>
+
+  <script>
+    function nextPage(pageNumber) {
+      const pages = document.querySelectorAll('.page');
+      pages.forEach(page => page.classList.remove('active'));
+      document.getElementById('page' + pageNumber).classList.add('active');
+    }
+      // Flores cayendo
+    const flowerContainer = document.getElementById('flowers');
+    const flowerCount = 12;
+
+    for (let i = 0; i < flowerCount; i++) {
+      const flower = document.createElement('div');
+      flower.classList.add('flower');
+
+      flower.style.left = Math.random() * 100 + 'vw';
+      flower.style.animationDuration = (10 + Math.random() * 10) + 's';
+      flower.style.animationDelay = Math.random() * 5 + 's';
+
+      flowerContainer.appendChild(flower);
+    }
+  </script>
+
+</body>
+</html>
