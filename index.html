@@ -5,182 +5,210 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Tarjeta de Cumpleaños</title>
   <style>
-    * {
-      box-sizing: border-box;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Montserrat:wght@300;400;500&display=swap');
 
-    body {
-      margin: 0;
-      background: url('img/fondo.jpg') no-repeat center center fixed;
-      background-size: cover;
-      position: relative;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-    }
+* {
+  box-sizing: border-box;
+}
 
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      background: rgba(255,255,255,0.6);
-      backdrop-filter: blur(8px);
-      z-index: -1;
-    }
+body {
+  margin: 0;
+  background: url('img/fondo.jpg') no-repeat center center fixed;
+  background-size: cover;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  font-family: 'Montserrat', sans-serif;
+}
 
-    .card {
-      width: 90%;
-      max-width: 420px;
-      background: #ffffff;
-      border-radius: 20px;
-      box-shadow:
-        0 0 0 1px rgba(0, 0, 0, 0.15),
-        0 10px 35px rgba(0, 0, 0, 0.25);
-      overflow: hidden;
-      position: relative;
-    }
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: rgba(245, 240, 230, 0.65);
+  backdrop-filter: blur(10px);
+  z-index: -1;
+}
 
-    .page {
-      padding: 30px 25px 80px;
-      display: none;
-      animation: fadeIn 0.8s ease;
-    }
+/* Tarjeta */
+.card {
+  width: 90%;
+  max-width: 420px;
+  background: linear-gradient(180deg, #ffffff 0%, #f7f4ef 100%);
+  border-radius: 22px;
+  box-shadow:
+    0 12px 40px rgba(0,0,0,0.25),
+    inset 0 0 0 1px rgba(0,0,0,0.08);
+  overflow: hidden;
+  position: relative;
+}
 
-    .page.active {
-      display: block;
-    }
+/* Páginas */
+.page {
+  padding: 34px 26px 85px;
+  display: none;
+  animation: fadeIn 0.9s ease;
+}
 
-    h1, h2 {
-      color: #4a6f62;
-      text-align: center;
-      position: relative;
-      padding-bottom: 8px;
-    }
+.page.active {
+  display: block;
+}
 
-    h1::after, h2::after {
-      content: "";
-      display: block;
-      width: 60px;
-      height: 2px;
-      background: rgba(0,0,0,0.6);
-      margin: 8px auto 0;
-      border-radius: 2px;
-    }
+/* Títulos */
+h1, h2 {
+  font-family: 'Playfair Display', serif;
+  color: #3e5b52;
+  text-align: center;
+  letter-spacing: 0.5px;
+  margin-bottom: 14px;
+  position: relative;
+}
 
-    p {
-      color: #555;
-      line-height: 1.6;
-      text-align: center;
-    }
+h1 {
+  font-size: 26px;
+}
 
-    .btn {
-      position: absolute;
-      bottom: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: #7fb8a6;
-      color: #fff;
-      border: none;
-      padding: 12px 28px;
-      border-radius: 30px;
-      font-size: 16px;
-      cursor: pointer;
-      transition: background 0.3s ease, transform 0.2s ease;
-    }
+h2 {
+  font-size: 22px;
+}
 
-    .btn-back {
-      position: absolute;
-      bottom: 26px;
-      left: 20px;
-      background: transparent;
-      color: #4a6f62;
-      border: none;
-      font-size: 14px;
-      cursor: pointer;
-      opacity: 0.7;
-      transition: opacity 0.3s ease, transform 0.2s ease;
-    }
+h1::after,
+h2::after {
+  content: "";
+  display: block;
+  width: 70px;
+  height: 2px;
+  background: linear-gradient(to right, transparent, #000, transparent);
+  margin: 10px auto 0;
+}
 
-    .btn-back:hover {
-      opacity: 1;
-      transform: translateX(-2px);
-    }
+/* Texto */
+p {
+  color: #4b4b4b;
+  line-height: 1.7;
+  text-align: center;
+  font-size: 14.5px;
+}
 
-    .btn:hover {
-      background: #6aa796;
-      transform: translateX(-50%) scale(1.05);
-    }
+/* Botón principal */
+.btn {
+  position: absolute;
+  bottom: 22px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(135deg, #7b9b8e, #5f8276);
+  color: #fff;
+  border: none;
+  padding: 12px 30px;
+  border-radius: 30px;
+  font-size: 15px;
+  font-family: 'Montserrat', sans-serif;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.25);
+  transition: all 0.3s ease;
+}
 
-    .photo {
-      width: 100%;
-      border-radius: 15px;
-      margin: 20px 0;
-      animation: zoomIn 1s ease;
-    }
+.btn:hover {
+  transform: translateX(-50%) scale(1.05);
+}
 
-    .info-box {
-      background: #f1f7f5;
-      border-radius: 15px;
-      padding: 15px;
-      margin: 15px 0;
-    }
+/* Botón atrás */
+.btn-back {
+  position: absolute;
+  bottom: 28px;
+  left: 18px;
+  background: transparent;
+  color: #3e5b52;
+  border: none;
+  font-size: 13px;
+  cursor: pointer;
+  opacity: 0.6;
+  transition: opacity 0.3s ease;
+}
 
-    .info-box strong {
-      color: #4a6f62;
-    }
+.btn-back:hover {
+  opacity: 1;
+}
 
-    a.link {
-      display: block;
-      margin-top: 8px;
-      color: #5fa392;
-      text-decoration: none;
-      font-weight: 600;
-      text-align: center;
-    }
+/* Imagen */
+.photo {
+  width: 100%;
+  border-radius: 16px;
+  margin: 20px 0;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+  animation: zoomIn 1s ease;
+}
 
-    a.link:hover {
-      text-decoration: underline;
-    }
+/* Cajas de info */
+.info-box {
+  background: rgba(255,255,255,0.85);
+  border-radius: 16px;
+  padding: 14px;
+  margin: 14px 0;
+  box-shadow: inset 0 0 0 1px rgba(0,0,0,0.08);
+}
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
+.info-box strong {
+  font-family: 'Playfair Display', serif;
+  color: #3e5b52;
+}
 
-    @keyframes zoomIn {
-      from { transform: scale(0.9); opacity: 0; }
-      to { transform: scale(1); opacity: 1; }
-    }
-      .floating-flowers {
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      overflow: hidden;
-      z-index: 1;
-    }
+/* Links */
+a.link {
+  display: block;
+  margin-top: 8px;
+  color: #5f8276;
+  text-decoration: none;
+  font-weight: 500;
+  text-align: center;
+}
 
-    .flower {
-      position: absolute;
-      top: -60px;
-      width: 45px;
-      height: 45px;
-      background-image: url('img/ortencia.png');
-      background-size: contain;
-      background-repeat: no-repeat;
-      background-color: transparent;
-      opacity: 0.90;
-      mix-blend-mode: multiply;
-      filter: drop-shadow(0 4px 6px rgba(0,0,0,0.15));
-      animation: fall linear infinite;
-    }
+a.link:hover {
+  text-decoration: underline;
+}
 
-    @keyframes fall {
-      to {
-        transform: translateY(110vh) rotate(360deg);
-      }
-    }
+/* Animaciones */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(25px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes zoomIn {
+  from { transform: scale(0.92); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+/* Flores */
+.floating-flowers {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.flower {
+  position: absolute;
+  top: -60px;
+  width: 42px;
+  height: 42px;
+  background-image: url('img/ortencia.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  opacity: 0.75;
+  filter: drop-shadow(0 3px 6px rgba(0,0,0,0.2));
+  animation: fall linear infinite;
+}
+
+@keyframes fall {
+  to {
+    transform: translateY(115vh) rotate(360deg);
+  }
+}
+
   </style>
 </head>
 <body>
@@ -203,8 +231,9 @@
         es un encuentro íntimo para disfrutar, conversar,
         reír y crear nuevos recuerdos junto a las personas más cercanas.
       </p>
+      <h2>Ricardo y Andrea quieren invitarlos</h2>
       <p>
-        Te invitamos a ser parte de este momento especial,
+        A ser parte de este momento especial,
         preparado con dedicación, elegancia y el cariño de quienes
         valoran profundamente su presencia.
       </p>
@@ -215,7 +244,7 @@
     <div class="page" id="page2">
       <button class="btn-back" onclick="nextPage(1)">← Atrás</button>
       <h2>Nuestra Cumpleañera</h2>
-      <img src="img/cumpleanera.jpg" alt="Cumpleañera" class="photo" />
+      <img src="/img/cumpleanera.jpg" alt="Cumpleañera" class="photo" />
       <p>
         Celebramos la vida de una persona especial, rodeada de flores,
         calidez y momentos que florecen como las hortensias.
@@ -237,13 +266,17 @@
       </div>
 
       <div class="info-box">
+        <p><strong>Lluvia de Sobres</strong></p>
+      </div>
+
+      <div class="info-box">
         <p><strong>Lugar:</strong></p>
         <a class="link" href="https://maps.app.goo.gl/Ao3DCtj6pYD3tqpx5?g_st=awb" target="_blank">Ver ubicación en Google Maps</a>
       </div>
 
       <div class="info-box">
         <p><strong>Confirmar asistencia en el siguiente enlace:</strong></p>
-        <a class="link" href="https://docs.google.com/forms/d/e/1FAIpQLSfcOBS8pmzhCSO9UAKM_a0PyrqHNqWR89Dj10NjOPMa17l0Qw/viewform?usp=dialog" target="_blank">Formulario de confirmación</a>
+        <a class="link" href="https://forms.google.com" target="_blank">Formulario de confirmación</a>
       </div>
 
       <p>
@@ -278,3 +311,5 @@
 
 </body>
 </html>
+
+
